@@ -67,7 +67,7 @@ The backend will be available at [http://localhost:5000](http://localhost:5000).
             "username": "string",
             "email": "string",
             "password": "string",
-            "role": "player" // or "host"
+            "role": "string" // either "player" or "host"
         }
         ```
 
@@ -84,7 +84,7 @@ The backend will be available at [http://localhost:5000](http://localhost:5000).
     - **Response:**
         ```json
         {
-            "token": "jwt_token"
+            "token": "string" // JWT token
         }
         ```
 
@@ -100,9 +100,13 @@ The backend will be available at [http://localhost:5000](http://localhost:5000).
     - **Request Body:**
         ```json
         {
-            "title": "string",
-            "description": "string",
-            "genre": "string"
+            "name": "string", // game name
+            "type": "string", // game type (e.g., board game, card game)
+            "minPlayers": "number", // minimum number of players
+            "maxPlayers": "number", // maximum number of players
+            "duration": "number", // game duration in minutes
+            "complexity": "string", // complexity level (e.g., easy, medium, hard)
+            "status": "string" // e.g., owned, wishlist
         }
         ```
 
@@ -116,9 +120,13 @@ The backend will be available at [http://localhost:5000](http://localhost:5000).
     - **Request Body:**
         ```json
         {
-            "title": "string",
-            "description": "string",
-            "genre": "string"
+            "name": "string",
+            "type": "string",
+            "minPlayers": "number",
+            "maxPlayers": "number",
+            "duration": "number",
+            "complexity": "string",
+            "status": "string"
         }
         ```
 
@@ -134,10 +142,14 @@ The backend will be available at [http://localhost:5000](http://localhost:5000).
     - **Request Body:**
         ```json
         {
-            "name": "string",
-            "date": "string", // ISO format
-            "location": "string",
-            "games": ["string"] // Array of game IDs
+            "title": "string", // title of the game night
+            "date": "string", // ISO format date (e.g., 2024-09-15)
+            "time": "string", // time in 24-hour format (e.g., 19:00)
+            "location": "string", // event location
+            "gameDetails": {
+                "name": "string", // name of the game
+                "type": "string" // type of game (e.g., board game)
+            }
         }
         ```
 
@@ -155,13 +167,21 @@ The backend will be available at [http://localhost:5000](http://localhost:5000).
     - **Request Body:**
         ```json
         {
-            "name": "string",
-            "date": "string", // ISO format
+            "title": "string",
+            "date": "string", // ISO format date
+            "time": "string", // time in 24-hour format
             "location": "string",
-            "games": ["string"] // Array of game IDs
+            "gameDetails": {
+                "name": "string",
+                "type": "string"
+            }
         }
         ```
 
 - **Delete a Game Night**
     - **Endpoint:** DELETE /api/gamenights/:id
     - **Description:** Deletes a game night by its ID.
+
+## Testing with Postman
+
+For testing purposes, you can use these request bodies with Postman to make API calls and validate functionality.
